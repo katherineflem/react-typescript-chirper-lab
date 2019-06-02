@@ -1,9 +1,14 @@
-import * as express from 'express';
+import {Router} from 'express';
+import chirpsRouter from './chirps'
 
-const router = express.Router();
+const router = Router();
 
-router.get('/api/hello', (req, res, next) => {
-    res.json('World');
+router.get('/', (req, res, next) => {
+    res.json();
 });
 
+router.use('/chirps', (chirpsRouter))
+
 export default router;
+
+
