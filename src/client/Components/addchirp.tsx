@@ -1,5 +1,8 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { json } from 'body-parser';
+import bodyParser = require('body-parser');
+import { response } from 'express';
 class AddChirp extends React.Component<IAddchirpState, IAddchirpProps>{
 
     constructor(props: IAddchirpProps) {
@@ -16,13 +19,14 @@ class AddChirp extends React.Component<IAddchirpState, IAddchirpProps>{
 
     submitHandler = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault()
-        // let newChirp = this.state;
-        let formData= new FormData()
+        let newChirp = this.state;
+        // let formData= new FormData()
         fetch('/api/chirps', {
             method: 'POST',
-            body: formData
-        }).then (res =>res.json())
-        .then(res =>console.log(JSON.stringify(res)))
+            body: JSON.stringify(newChirp)
+        }).then(res => res.json())
+        .then(res=>{console.log(res)})
+       
     }
 
     render() {
