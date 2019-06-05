@@ -15,7 +15,7 @@ router.get('/:id?', (req, res) => {
             return {
                 id: key,
                 name: data[key].name,
-                message: data[key].Message
+                message: data[key].message
             }
         });
         chirpsArray.pop();
@@ -26,7 +26,7 @@ router.get('/:id?', (req, res) => {
 //POST REQUEST FOR CHIRPS
 router.post('/', (req, res) => {
     chirpstore.CreateChirp(req.body);
-    res.sendStatus(200);
+    res.json('chirp added');
 })
 
 //PUT REQUEST FOR CHIRPS
