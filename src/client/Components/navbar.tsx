@@ -6,7 +6,9 @@ class Navbar extends React.Component<INavbarProps, INavbarState> {
     render() {
         return (
             <nav className="navbar navbar-light bg-success">
-                <h1>Chirper</h1>
+                <Link to="/">
+                    <h1 className="text-light">Chirper</h1>
+                </Link>
                 <Link className="btn btn-outline-light" to="/chirp/add">Submit a Chirp</Link>
             </nav>
 

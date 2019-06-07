@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { render } from 'react-dom';
 class AddChirp extends React.Component<IAddchirpProps, IAddchirpState>{
 
     constructor(props: IAddchirpProps) {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom'
 
 class Chirps extends React.Component<IChirpsProps, IChirpsState>{
     constructor(props: IChirpsProps) {
@@ -27,14 +28,7 @@ class Chirps extends React.Component<IChirpsProps, IChirpsState>{
             .catch(err => console.log(err))
     }
 
-
-    // handleEditChirp(id: React.MouseEvent<HTMLButtonElement>) {
-    //     fetch(`/api/chirps/${id}`), {
-    //         method: 'PUT',
-
-    //     }
-    // }
-
+ 
 
     render() {
         return (
@@ -42,14 +36,14 @@ class Chirps extends React.Component<IChirpsProps, IChirpsState>{
                 {this.state.chirps.map(chirp => {
                     return (
                         <article key={chirp.id} className="col md-6">
-                            <div className="card">
+                            <div className="card mt-3 shadow border-success">
                                 <div className="card-body">
-                                    <button type="button" className="close" aria-label="Close">
-                                        <span aria-hidden="true" onClick={this.handleDelete(chirp.id)}>&times;</span>
+                                    <button type="button" className="close" aria-label="Close" onClick={()=>this.handleDelete(chirp.id)}>
+                                        <span aria-hidden="true">&times;</span>
                                     </button>
                                     <h3 className="card-title">{chirp.name}</h3>
                                     <div className="card-text">{chirp.message}</div>
-                                    <button className="btn btn-sm btn-link">Edit Chirp</button>
+                                    <Link className="btn btn-sm btn-link btn-outline-success bg-light text-success" to={`/chirp/edit/${chirp.id}`}>Admin Options</Link>
                                 </div>
                             </div>
                         </article>
