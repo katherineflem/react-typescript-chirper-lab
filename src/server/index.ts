@@ -7,6 +7,7 @@ router.get('/', (req, res, next) => {
     res.json();
 });
 
+
 router.use('/chirps', (chirpsRouter))
 
 export default router;

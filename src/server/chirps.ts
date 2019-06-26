@@ -1,25 +1,36 @@
 //logic for get, put, delete chirps from backend 
 import { Router } from 'express'
 import chirpstore from './chirpstore'
+import db from './db'
 
 const router = Router()
 
 //GET REQUEST FOR CHIRPS
-router.get('/:id?', (req, res) => {
-    let id = req.params.id;
-    if (id) {
-        res.json(chirpstore.GetChirp(id))
-    } else {
-        let data = (chirpstore.GetChirps());
-        let chirpsArray = Object['keys'](data).map(key => {
-            return {
-                id: key,
-                name: data[key].name,
-                message: data[key].message
-            }
-        });
-        chirpsArray.pop();
-        res.json(chirpsArray)
+
+// router.get('/:id?', (req, res) => {
+//     let id = req.params.id;
+//     if (id) {
+//         res.json(chirpstore.GetChirp(id))
+//     } else {
+//         let data = (chirpstore.GetChirps());
+//         let chirpsArray = Object['keys'](data).map(key => {
+//             return {
+//                 id: key,
+//                 name: data[key].name,
+//                 message: data[key].message
+//             }
+//         });
+//         chirpsArray.pop();
+//         res.json(chirpsArray)
+//     }
+// })
+
+router.get('/api/chirps', async (req,res)=>{
+    try{
+        res.json(await db.Chirpsdb.getAll());
+    }catch(e){
+        console.log(e);
+        res.sendStatus(500)
     }
 })
 
